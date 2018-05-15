@@ -13,6 +13,11 @@ from django.http import HttpResponse
 #      return render(request,'index.html')
 
 
-#Get 请求
+# #Get 请求
+# def index(request):
+#     return render(request,'index.html')
+
+
+#post 请求
 def index(request):
     return render(request,'index.html')
