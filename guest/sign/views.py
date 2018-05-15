@@ -3,11 +3,16 @@ from django.http import HttpResponse
 # Create your views here.
 # 
 
-#django 简单返回
+# #django 简单返回
 # def index(request):
 #      return HttpReponse("hello django!")
 
 
-#Django 模板返回
+# #Django 模板返回
+# def index(request):
+#      return render(request,'index.html')
+
+
+#Get 请求
 def index(request):
-     return render(request,'index.html')
+    return render(request,'index.html')
