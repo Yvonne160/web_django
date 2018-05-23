@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 # Create your views here.
 # 
 
@@ -29,7 +29,10 @@ def login_action(request):
         username = request.POST.get('user','')
         password = request.POST.get('pw','')
         if username=="admin" and password=="admin123":
-            return HttpResponse('login success!')
+            return HttpResponseRedirect('/event_manage/')
         else:
             return render(request,'index.html',{'error':'用户名或密码错误'})
 
+#重定向处理登录成功
+def event_manage(request):
+    return render(request,'event_manage.html')
