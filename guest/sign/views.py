@@ -30,13 +30,15 @@ def login_action(request):
         password = request.POST.get('pw','')
         if username=="admin" and password=="admin123":
             response = HttpResponseRedirect('/event_manage/')
-            #添加浏览器cookie
-            response.set_cookie('username',username,3600)
+            # #添加浏览器cookie
+            # response.set_cookie('username',username,3600)
+            #添加session，执行时报错no such table；需要执行python manage.py migrate
+            request.session['username']=username
             return response
         else:
             return render(request,'index.html',{'error':'用户名或密码错误'})
 
 #重定向处理登录成功
 def event_manage(request):
-    username = request.COOKIES.get('username','')
+    username = request.session.get('username','')
     return render(request,'event_manage.html',{"username":username})
