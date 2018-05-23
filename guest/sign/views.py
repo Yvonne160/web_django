@@ -29,10 +29,14 @@ def login_action(request):
         username = request.POST.get('user','')
         password = request.POST.get('pw','')
         if username=="admin" and password=="admin123":
-            return HttpResponseRedirect('/event_manage/')
+            response = HttpResponseRedirect('/event_manage/')
+            #添加浏览器cookie
+            response.set_cookie('username',username,3600)
+            return response
         else:
             return render(request,'index.html',{'error':'用户名或密码错误'})
 
 #重定向处理登录成功
 def event_manage(request):
-    return render(request,'event_manage.html')
+    username = request.COOKIES.get('username','')
+    return render(request,'event_manage.html',{"username":username})
